@@ -63,7 +63,7 @@ function ct_ajax_list_table_paginate_table( table, paged ) {
     var query_args = table.data('query-args');
 
     // Turn query args into an object
-    query_args = $.parseJSON( query_args.split("'").join('"') );
+    query_args = JSON.parse( query_args.split("'").join('"') );
 
     // Add the table loader
     ct_ajax_list_table_add_loader( table );
@@ -72,6 +72,7 @@ function ct_ajax_list_table_paginate_table( table, paged ) {
         url: ajaxurl,
         data: {
             action: 'ct_ajax_list_table_request',
+            nonce: ct_ajax_list_table.nonce,
             object: object,
             query_args: query_args,
             paged: paged
